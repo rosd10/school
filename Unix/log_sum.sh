@@ -23,11 +23,6 @@ OPTIONS:
 EOF
 }
 
-number=
-hours=
-days=
-secs=
-
 calculate_limit(){
 	lastdate=$(tail -n1 $FILENAME | awk '{print $4}' | sed 's/\[//' | sed 's/\// /g' | sed 's/\:/ /')
 	lastdatestamp=$(date --date "${lastdate}" +"%s")
@@ -40,7 +35,7 @@ calculate_limit(){
 		date=${date//\//" "}
 		date="${date:0:11} ${date:12}"
 		datestamp=$(date --date "${date}" +"%s")
-		if [ $datestamp -gt $newdatestamp ]; then
+		if { $datestamp -gt $newdatestamp ]; then
 			limittime=$(expr $limittime + 1)
 		else
 			break
@@ -162,26 +157,15 @@ calc_bytes_sent(){
 	fi	
 }
 
+number=
+hours=
+days=
+secs=
+
 if [ $# -eq 0 ]; then
 	show_usage
 	exit 1
 else
-	#Finds the filename among the arguments.
-	for args in $@; do
-		FILENAME=$args
-	done
-
-	if [ $FILENAME = "-" ]; then
-		cat /dev/stdin > /tmp/sumlog.tmp
-		FILENAME='/tmp/sumlog.tmp'
-	fi
-
-	#If the entered file exists then it reads the contents of that file.
-	if [ ! -f $FILENAME ]; then
-		echo "No such file"
-		exit 1
-	fi
-	
 	#Runs through the arguments, setting values and modes.
 	while getopts "n:h:d:c2rFt" OPTION
 	do
@@ -192,12 +176,10 @@ else
 			h)
 				hours=$OPTARG
 				let secs=$days*3600
-				calculate_limit
 				;;
 			d)
 				days=$OPTARG
 				let secs=$days*86400
-				calculate_limit
 				;;
 			c)
 				calc_connection_attempts
@@ -217,3 +199,16 @@ else
 		esac
 	done
 fi
+
+#Finds the filename among the arguments.
+for args in $@; do
+	FILENAME=$args
+done
+
+#If the entered file exists then it reads the contents of that file.
+if [ ! -f $FILENAME ]; then
+	echo "No such file"
+	exit 1
+fi
+
+calculate_limit
