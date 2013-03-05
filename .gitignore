@@ -3,3 +3,4 @@
 */Release/
 *.exe
 *.exe.mdb
+*.o
