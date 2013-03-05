@@ -1,1 +1,5 @@
 ~*
+*/Debug/
+*/Release/
+*.exe
+*.exe.mdb
