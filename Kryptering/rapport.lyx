@@ -1,0 +1,2678 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Krypteringsprojekt i MA1123
+\end_layout
+
+\begin_layout Author
+Kristian Lundkvist, 900831
+\begin_inset Newline newline
+\end_inset
+
+Kristina Stendahl, 6604267903
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{roman}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{arabic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Uppgift 1
+\end_layout
+
+\begin_layout Subsection
+Kryptogram 1
+\end_layout
+
+\begin_layout Standard
+Vi gissade att kryptogrammet var ett förskjutningskrypto, även känt som
+ Caesarchiffer, då kryptogrammet var för kort för att kunna lösas på något
+ annat tänkbart sätt (för kort för frekvensanalys till exempel).
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Lösning
+\end_layout
+
+\begin_layout Standard
+Med hjälp dokumentet 
+\begin_inset Quotes eld
+\end_inset
+
+Introduktion till Pari/GP
+\begin_inset Quotes erd
+\end_inset
+
+ så skrev vi kod som forcerade kryptogrammet och fick fram både klartexten
+ och nyckeln.
+ Koden var som följer (lite ändrad för läsbarhet):
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+kryptotext = Eng(kryptogram1)
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i=-24, 0, temp = Caesarcipher(kryptotext, i, 26);
+\end_layout
+
+\begin_layout Plain Layout
+
+	klartext = Eng(temp, -1);
+\end_layout
+
+\begin_layout Plain Layout
+
+	print(i);
+\end_layout
+
+\begin_layout Plain Layout
+
+	print(klartext)
+\end_layout
+
+\begin_layout Plain Layout
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Detta kommer visa att krypteringsnyckeln är 8 och att klartexten (med tillagda
+ mellanslag) är: 
+\begin_inset Quotes eld
+\end_inset
+
+all work and no play makes jack a dull boy the next cipher is a subsitution
+ cipher
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Detta gav oss även hjälp till nästa uppgift.
+\end_layout
+
+\begin_layout Subsubsection
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Introduktionen till Pari/GP var väldigt lärorik, eftersom man hade möjligheten
+ att testa sig fram lite.
+ Det här gav en inblick i hur kraftfullt och användbart programmet faktiskt
+ är.
+ Dock insåg vi ganska snabbt att det var bättre att läsa in filerna som
+ argument till programmet, istället för att blint lita på 
+\backslash
+r filnamn, då detta visade sig att inte alltid fungera på ett tillfredställande
+ sätt, då GP inte hittade kommandona.
+\end_layout
+
+\begin_layout Standard
+Det här första projektet var en bra uppvärming inför det som komma skall,
+ eftersom man nu har en liten föraning om hur programvaran fungerar, vilket
+ kan vara en stor fördel när vi sedan ska lösa kommande projekt.
+\end_layout
+
+\begin_layout Subsection
+Kryptogram 2
+\end_layout
+
+\begin_layout Standard
+Enligt ledtråden från förra uppgiften så visste vi att denna uppgiften var
+ ett subsitutionskrypto.
+ Utifrån detta påbörjade vi en frekvensanalys.
+\end_layout
+
+\begin_layout Subsubsection
+Lösning
+\end_layout
+
+\begin_layout Standard
+Vi började med en frekvensanalys av kryptogrammet där vi listade hur många
+ gånger varje bokstav förekom, vilken procentsats denna utgjorde av det
+ hela och jämförde sedan med en baslinje för svenska språket
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "wikipedia"
+target "https://en.wikipedia.org/wiki/Letter_frequencies#Relative_frequencies_of_letters_in_other_languages"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Detta gjorde att vi kunde bestämma vad vissa av tecknen i kryptogrammet
+ skulle vara men inte alla.
+ Efter detta började vi leta efter bigram och trigram som vi kunde koppla
+ till bokstäverna vi redan fått fram vilket gav oss ett par nycklar till.
+ Det var nu som av en ren slump vi kände igen delar av Strindbergs Röda
+ Rummet och detta visade sig stämma bra med resten av kryptogrammet.
+ Den slutgiltiga tabellen för kryptogram, klartext, antal instanser och
+ frekvensen i procent blev:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="30" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kryptogram
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Antal instanser
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frekvens
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Klartext
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+130
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,73
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+O
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+43
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1,89
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+44
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1,94
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ä
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+33
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1,45
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+E
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+59
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+P
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+53
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,33
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Å
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+119
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+H
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+180
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7,94
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+112
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,94
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+J
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+188
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8,29
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+T
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+K
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+136
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ö
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+104
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,58
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+O
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+68
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+K
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+P
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+43
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1,89
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Q
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+V
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+197
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8,69
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+E
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1,05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+J
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+T
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+68
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+184
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8,12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+V
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Y
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Y
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Z
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,07
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+H
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Å
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ä
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+72
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3,17
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ö
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+191
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8,43
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Slutgiltiga klartexten blir då (med insatta mellanrum):
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+\begin_inset Quotes eld
+\end_inset
+
+röda rummet första kapitlet stockholm i fågelperspektiv det var en afton
+ i början av maj den lilla trädgården på mosebacke hade ännu icke blivit
+ öppnad för allmänheten och rabatterna voro ej uppgrävda snödropparne hade
+ arbetat sig upp genom fjolårets lövsamlingar och höllo just på att slutas
+ inkorta verksamhet för att lämna plats åt de ömtåligare saffransblommorna
+ vilka tagit skydd under ett ofruktsamt päronträd syrenerna väntade på sydligvin
+d för att få gå i blommen lindarne bjödo ännu kärleksfilter i sina obrustna
+ knoppar åt bofinkarne som börjat bygga sina lavklädda bon mellan stam och
+ gren ännu hade ingen mänskofot trampat sandgångarne sedan sista vinterns
+ snö gått bort och därför levdes ett obesvärat liv där inne av både djur
+ och bl ommor gråsparvarne höllo på att samla upp skräp som de sedan gömde
+ under takpannorna på navigationsskolans hus de drogo som spillror av rakethylso
+r från sista höstfyrverkeriet de plockade halmen från unga trädsomåret för
+ utsluppit ur skolan på rosendal och allting sågo de de hittade baregelappar
+ i bersåer och kunde mellan stickorna på en bänk fotdraga fram hårtappar
+ efter hundar som icke slagits där sedan josefinadagen i fjor där var ett
+ liv och ett kiv men solen stod över liljeholmen och sköt hela kvastar av
+ strålar mot öster de gingo genom rökarne från bergsund de ilade framöver
+ riddarfjärden klättrade upp till korset på riddarholmskyrkan kastade sig
+ över till tyskans brantatak lekte med vimplarne på skeppsbrobåtarne illuminerad
+e i fönstren på stora sjötullen eklärerade lidingöskogarne och tonade bort
+ i ett rosenfärgat moln långt långt ut i fjärran där havet ligger och därifrån
+ kom vinden och hon gjorde sammafärd tillbaka genom vaxholm förbi fästningen
+ förbi sjötulln ut med siklaön gick in bakom hästholmen och tittade på sommarnöj
+ena ut igen fortsatte och kom in i danviken blev skrämd och rusade av utmed
+ södra stranden kände lukten av kol tjära och tran törnade mot stadsgården
+ for upp för mosebacke in i trädgården och slog emot en vägg i det samma
+ öppnades väggen av en piga som just rivit bort klistringen på innan fönstren
+ ett förfärligt os av stekflott ölskvättar granris och sågspån störtade
+ ut och fördes långt bort av vinden som nu medan köksan drog in den friska
+ luften genom näsan passade på att gripa fönstervadden som var beströdd
+ med paljetter och berberis bär och törnrosblad och började en ringdans
+ ut efter gångarne i vilken snart grå sparvarne och bofinkarne deltogo då
+ de sålunda sågo sina bosättningsbekymmer till stor del undanröjda nästa
+ krypto är ett rsa publik nyckeln lika med tre ett två sex noll ett fem
+ tre tre ett ett noll åtta åtta noll noll två nio sex åtta nio sju och e
+ likamed fem noll sju noll åtta noll nio
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Intressant här är slutet som berättar att nästa kryptogram är ett RSA krypto
+ med publik nyckel 3126015331108800296897 och där 
+\emph on
+e
+\emph default
+ är 5070809.
+\end_layout
+
+\begin_layout Subsubsection
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Antingen missade vi något när vi skulle utföra frekvensanalysen med hjälp
+ av Pari/GP eller så blev något annat fel, vi fick i alla fall utföra frekvensan
+alysen genom att kopiera in texten i emacs och använda det för att räkna
+ tecknen.
+ Annars var det inget anmärkningsvärt med uppgiften.
+\end_layout
+
+\begin_layout Subsection
+Kryptogram 3
+\end_layout
+
+\begin_layout Standard
+Enligt ledtråden i förra uppgiften så vet vi att kryptogrammet är krypterat
+ med RSA, att den publika nyckeln (n) är 3126015331108800296897 och att
+ exponenten (e) är 5070809.
+\end_layout
+
+\begin_layout Subsubsection
+Lösning
+\end_layout
+
+\begin_layout Standard
+Lösningen görs helt i Pari/GP.
+ Vi börjar med att definiera det vi vet:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+n=3126015331108800296897
+\end_layout
+
+\begin_layout Plain Layout
+
+e=5070809
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vi vet sedan att 
+\begin_inset Formula $n=pq$
+\end_inset
+
+ där 
+\begin_inset Formula $p$
+\end_inset
+
+ och 
+\begin_inset Formula $q$
+\end_inset
+
+ är primtal och vi faktoriserar därför 
+\begin_inset Formula $n$
+\end_inset
+
+ och kollar om faktorerna är primtal:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+factorint(n)
+\end_layout
+
+\begin_layout Plain Layout
+
+>20709784709
+\end_layout
+
+\begin_layout Plain Layout
+
+>150943883533
+\end_layout
+
+\begin_layout Plain Layout
+
+20709784709*150943883533
+\end_layout
+
+\begin_layout Plain Layout
+
+>3126015331108800296897
+\end_layout
+
+\begin_layout Plain Layout
+
+isprime(20709784709)
+\end_layout
+
+\begin_layout Plain Layout
+
+>1
+\end_layout
+
+\begin_layout Plain Layout
+
+isprime(150943883533)
+\end_layout
+
+\begin_layout Plain Layout
+
+>1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vi har alltså fått ut både 
+\begin_inset Formula $p$
+\end_inset
+
+ och 
+\begin_inset Formula $q$
+\end_inset
+
+ och vet att båda är primtal.
+ Vi räknar därefter ut 
+\begin_inset Formula $m=(p-1)(q-1)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+p=20709784709
+\end_layout
+
+\begin_layout Plain Layout
+
+q=150943883533
+\end_layout
+
+\begin_layout Plain Layout
+
+m=(p-1)*(q-1)
+\end_layout
+
+\begin_layout Plain Layout
+
+>3126015330937146628656
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nu kan vi se om allt stämmer, har vi fått rätt resultat än så länge så ska
+ 
+\begin_inset Formula $GCD(e,m)=1$
+\end_inset
+
+, är det inte det får vi går tillbaka och leta efter fel.
+ Vi testar:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+gcd(e,m)
+\end_layout
+
+\begin_layout Plain Layout
+
+>1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Våra uträkningar stämmer alltså.
+ Vi ska nu hitta 
+\begin_inset Formula $d$
+\end_inset
+
+ som vi får genom 
+\emph on
+1 = de mod m
+\emph default
+.
+ Man kan även använda funktionen bezout:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+d=bezout(e, eulerphi(n))[1]
+\end_layout
+
+\begin_layout Plain Layout
+
+>-466844297992307580583
+\end_layout
+
+\begin_layout Plain Layout
+
+(d*e)%m
+\end_layout
+
+\begin_layout Plain Layout
+
+>1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vi har alltså hittat allt vi behöver för att kunna dekryptera kryptogrammet.
+ Lösningen blir då:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+RSA(kryptogram3, n, d)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Detta ger oss en vektor med siffror som man sedan kunde koda om till ASCII.
+ Resultatet blir: 
+\emph on
+Here she comes walking down the street She's got something you would love
+ to meet It's her heart and her heart is black Think of ice cream sliding
+ into a crack The heat sticks to summer's heavy sweat Hang around it'll
+ get hotter yet You got the shakes and it's gonne get worse Don't you know
+ it's all a part of the curse She's got the hit that takes you into space
+ Suck mud and make a deal for that taste You got nothing but you're riding
+ on a star You couldn't guess that she could take you that far Some things
+ are so hard to say Even though you'd say them every day Don't let your
+ life be the butt of a joke Get your lips round a cool black Pepsi Coke
+ Here she comes ÖÖÖÖÖ
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Det var rätt lätt att lösa kryptot medans det svåraste var att räkna ut
+ hur man skulle konvertera resultatet till något läsbart.
+ Kryptot visade också hur viktigt det var att ha långa nycklar då vårt första
+ steg hade tagit timmar eller dagar att göra om vi haft en ordentligt lång
+ nyckel.
+\end_layout
+
+\begin_layout Section
+Uppgift 2
+\end_layout
+
+\begin_layout Subsection
+Steg 1, hitta diagonalerna
+\end_layout
+
+\begin_layout Standard
+Det första vi måste göra är att hitta vilka bokstäver som kodar till dubbletter,
+ till exempel AA, DD, FF etc.
+ Detta gör man genom att skicka in ensamma bokstäver i algoritmen och kolla
+ på resultatet.
+ Då dubbletterna inte påverkas av transpositionerning så kan man lätt räkna
+ ut vilka bokstäver som ligger på diagonalen i Polybius boxen.
+\end_layout
+
+\begin_layout Subsection
+Steg 2, ta reda på hur transpositioneringen sker om man skickar in två bokstäver
+\end_layout
+
+\begin_layout Standard
+Vi genom steg 1 så har vi kommit fram till att 'h' kodar till 'AA' och 'x'
+ kodar till 'FF', vi skickar sedan in 'hx' i algoritmen.
+ Om det ger resultatet 'AAFF' så vet vi att ingen transpositionering sker,
+ om det kommer ut 'AFAF' så har kolumn 2 och 3 bytat plats eller att nyckeln
+ är två tecken lång utan att transpositionera.
+ Oavsett så kan vi ta reda på hur transpositioneringen funkar för de första
+ kolumnerna och vi kan därför börja avkoda resten av tecknen i Polybius
+ boxen.
+ Vi vet nu hur de olika kolumnerna flyttar sig så vi kan skicka in ett diagonalt
+ecken och ett okänt och se vad vi får för resultat, därefter bryter vi ut
+ det okända och vet då hur det tecknet kodar.
+\end_layout
+
+\begin_layout Subsection
+Steg 3, forcera kodordet
+\end_layout
+
+\begin_layout Standard
+Vi vet nu hur de olika tecknen kodar och kan därför forcera kodordet.
+ Detta gör vi i två steg.
+\end_layout
+
+\begin_layout Standard
+Först matar vi in en sträng i algoritmen.
+ Vi antar sedan att kodordet har 1 tecken som behåller sin ordning efter
+ transponeringen, kodar av bokstäverna och kollar om vi kan läsa meddelandet,
+ kan vi inte det så testar vi en annan transponering och vi fortsätter så
+ tills vi testat alla transponeringar för det den längden.
+ När vi kört alla transponeringar så ökar vi längden på kodordet med ett
+ och börjar om.
+ Vi fortsätter så tills vi vet vilken transponering och längd kodordet har.
+ Efter detta så har vi både Polybius boxen och kodordet.
+\end_layout
+
+\begin_layout Subsection
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Det finns antagligen bättre varianter som man kan använda och sätt att opimera
+ denna metoden men detta är det bästa vi kunde komma på.
+\end_layout
+
+\begin_layout Section
+Uppgift 3
+\end_layout
+
+\begin_layout Subsection
+Antalet kvadratiska matriser
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m^{k^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Mängden giltiga nycklar
+\end_layout
+
+\begin_layout Standard
+Enligt svaret i 3.1 så vet vi hur många kvadratiska matriser som finns, vi
+ måste nu räkna ut hur många giltiga nycklar som existserar.
+ En nyckel är giltig om determinanten för matrisen är relativt prima med
+ m.
+ Vi skrev ett program i C++ med Eigen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+http://eigen.tuxfamily.org/index.php?title=Main_Page
+\end_layout
+
+\end_inset
+
+ som gjorde detta.
+ Programmet och Makefile finns 
+\begin_inset CommandInset href
+LatexCommand href
+name "här"
+target "https://gist.github.com/kristianLundkvist/5012223"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Resultatet blir:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Modulu: 2     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 16     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 6     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 37.5     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 3     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 81     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 48     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 59.2593     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 4     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 256     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 96     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 37.5     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 5     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 625     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 480     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 76.8     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 6     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 1296     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 288     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 22.2222     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 7     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 2401     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 2016     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 83.965     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 8     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 4096     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 1536     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 37.5     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 9     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 6561     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 3888     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 59.2593     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 10     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 10000     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 2880     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 28.8     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 11     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 14641     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 13200     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 90.1578    
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 12     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 20736     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 4608     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 22.2222     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 13     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 28561     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 26208     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 91.7615     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 14     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 38416     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 12096     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 31.4869     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 15     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 50625     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 23040     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 45.5111     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 16     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 65536     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 24576     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 37.5     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 17     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 83521     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 78336     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 93.792     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 18     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 104976     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 23328     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 22.2222     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 19    
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 130321    
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 123120    
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 94.4744    
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 20    
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 160000  
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 46080    
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 28.8    
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 21     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 194481    
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 96768    
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 49.757    
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 22    
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 234256    
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 79200     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 33.8092    
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 23    
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 279841     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 267168     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 95.4714     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 24     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 331776     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 73728     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 22.2222     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 25     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 390625     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 300000     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 76.8     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 26     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 456976    
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 157248     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 34.4106     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 27     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 531441     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 314928    
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 59.2593     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 28     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 614656     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 193536     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 31.4869    
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 29     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 707281     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 682080     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 96.4369     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Modulu: 30     
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested keys: 810000     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 138240     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 17.0667          
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Tested matrixes: 5273998     
+\end_layout
+
+\begin_layout Plain Layout
+
+Functional keys: 2688726     
+\end_layout
+
+\begin_layout Plain Layout
+
+Percentage: 50.9808 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Det verkar som att desto fler tecken det finns i alfabetet desto fler inverterba
+ra matriser vilket gör att det är svårare att hitta rätt nyckel.
+ Det verkar även som att matriser med jämna modulu ger färre giltiga nycklar.
+\end_layout
+
+\end_body
+\end_document

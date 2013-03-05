@@ -1,0 +1,538 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Laboration 1
+\end_layout
+
+\begin_layout Author
+Kristian Lundkvist, 900831
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Inledning
+\end_layout
+
+\begin_layout Subsection
+Uppgift 1
+\end_layout
+
+\begin_layout Standard
+Färdigt, sitter på Linux.
+\end_layout
+
+\begin_layout Subsection
+Uppgift 2
+\end_layout
+
+\begin_layout Standard
+hist använder man för att skriva ut ett histogram för de angivna data.
+ sqrt används för att räkna ut kvadratroten av ett angivet tal.
+ stem används för att skapa en 
+\begin_inset Quotes eld
+\end_inset
+
+stem-and-leaf
+\begin_inset Quotes erd
+\end_inset
+
+ graf för de angiva värdena.
+\end_layout
+
+\begin_layout Section
+Exempel 1
+\end_layout
+
+\begin_layout Subsection
+Uppgift 3
+\end_layout
+
+\begin_layout Subsubsection
+(a)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> 123/45-78/9-pi
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] -9.074926 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(b)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> 34^56 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 5.791877e+85 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(c)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> sqrt(3*2 + 4*2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 3.741657 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 4
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> alfa=(1+sqrt(5))/2 
+\end_layout
+
+\begin_layout Plain Layout
+
+> 1+1/alfa 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 1.618034 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 5
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> ls() 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] "alfa" 
+\end_layout
+
+\begin_layout Plain Layout
+
+> rm(alfa) 
+\end_layout
+
+\begin_layout Plain Layout
+
+> 1+1/alfa 
+\end_layout
+
+\begin_layout Plain Layout
+
+Error: object 'alfa' not found 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exempel 3
+\end_layout
+
+\begin_layout Subsection
+Uppgift 6
+\end_layout
+
+\begin_layout Subsubsection
+(a)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> -3:3 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] -3 -2 -1  0  1  2  3 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(b)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> 5:0 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 5 4 3 2 1 0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(c)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> seq(23, 43, 4) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 23 27 31 35 39 43 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(d)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> seq(0.3, 1.1, 0.2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 0.3 0.5 0.7 0.9 1.1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 7
+\end_layout
+
+\begin_layout Standard
+Koden försöker välja ut 11 element ur en mängd med 10 utan att lägga tillbaka
+ något.
+\end_layout
+
+\begin_layout Subsection
+Uppgift 8
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> var = sample(10:99, 50, replace=TRUE) 
+\end_layout
+
+\begin_layout Plain Layout
+
+> stem(var)
+\end_layout
+
+\begin_layout Plain Layout
+
+  The decimal point is 1 digit(s) to the right of the |
+\end_layout
+
+\begin_layout Plain Layout
+
+  1 | 0145679
+\end_layout
+
+\begin_layout Plain Layout
+
+  2 | 018899
+\end_layout
+
+\begin_layout Plain Layout
+
+  3 | 01257
+\end_layout
+
+\begin_layout Plain Layout
+
+  4 | 1277
+\end_layout
+
+\begin_layout Plain Layout
+
+  5 | 477
+\end_layout
+
+\begin_layout Plain Layout
+
+  6 | 0599
+\end_layout
+
+\begin_layout Plain Layout
+
+  7 | 002779
+\end_layout
+
+\begin_layout Plain Layout
+
+  8 | 1233444579
+\end_layout
+
+\begin_layout Plain Layout
+
+  9 | 01446
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 9
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> sample(1, 500, replace=TRUE) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tog inte med output på denna.
+\end_layout
+
+\begin_layout Subsection
+Uppgift 10
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> sample(0, 500, replace=TRUE) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tog inte med output på denna.
+\end_layout
+
+\begin_layout Subsection
+Uppgift 11
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> plot(1:10000, cumsum(sample(1:6, 10000, replace=TRUE)==1)/1:10000) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Detta ger en graf som ser ut som följer: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/kristian/Desktop/graf.esp
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
