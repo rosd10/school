@@ -10,11 +10,11 @@ namespace Uppgift1
 			int paid = 0;
 			int change = 0;
 
-			Console.Write("Price: ");
-			price = Int32.Parse(Console.ReadLine());
+			Console.Write ("Price: ");
+			price = Int32.Parse (Console.ReadLine ());
 
-			Console.Write("Paid: ");
-			paid = Int32.Parse(Console.ReadLine());
+			Console.Write ("Paid: ");
+			paid = Int32.Parse (Console.ReadLine ());
 
 			change = paid - price;
 
@@ -35,13 +35,26 @@ namespace Uppgift1
 
 			int one = change;
 
-			Console.WriteLine("\nChange");
-			Console.WriteLine(hundred + " hundred bills");
-			Console.WriteLine(fifty + " fifty bills");
-			Console.WriteLine(twenty + " twenty bills");
-			Console.WriteLine(ten + " ten crowns");
-			Console.WriteLine(five + " five crowns");
-			Console.WriteLine(one + " one crowns");
+			Console.WriteLine ("\nChange");
+
+			if (hundred != 0) {
+				Console.WriteLine (hundred + " hundred bills");
+			}
+			if (fifty != 0) {
+				Console.WriteLine (fifty + " fifty bills");
+			}
+			if (twenty != 0) {
+				Console.WriteLine (twenty + " twenty bills");
+			}
+			if (ten != 0) {
+				Console.WriteLine (ten + " ten crowns");
+			}
+			if (five != 0) {
+				Console.WriteLine (five + " five crowns");
+			}
+			if (one != 0) {
+				Console.WriteLine (one + " one crowns");
+			}
 
 			Console.ReadLine();
 		}
