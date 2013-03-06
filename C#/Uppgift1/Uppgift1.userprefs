@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Uppgift1/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Uppgift1\Main.cs">
     <Files>
-      <File FileName="Uppgift1/Main.cs" Line="74" Column="42" />
+      <File FileName="Uppgift1\Main.cs" Line="55" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
