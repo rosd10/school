@@ -2,13 +2,22 @@ using System;
 
 namespace Uppgift2
 {
+	//A class representing one salesman.
 	public class Salesman
 	{
+		//The salesman's name.
 		private string name;
+
+		//The salesman's ID.
 		private int id;
+
+		//The salesman's district.
 		private char district;
+
+		//The amount of articles the salesman have sold.
 		private int amountSold;
 
+		//Public property for getting and setting name.
 		public string Name 
 		{
 			get {
@@ -19,6 +28,7 @@ namespace Uppgift2
 			}
 		}
 
+		//Public property for getting and setting ID.
 		public int ID 
 		{
 			get {
@@ -29,6 +39,7 @@ namespace Uppgift2
 			}
 		}
 
+		//Public property for getting and setting district.
 		public char District 
 		{
 			get {
@@ -39,6 +50,7 @@ namespace Uppgift2
 			}
 		}
 
+		//Public property for getting and setting the amount sold.
 		public int AmountSold 
 		{
 			get { 
@@ -49,6 +61,7 @@ namespace Uppgift2
 			}
 		}
 
+		//Default constructor.
 		public Salesman ()
 		{
 			this.name = "";
@@ -57,6 +70,7 @@ namespace Uppgift2
 			this.amountSold = -1;
 		}
 
+		//Constructor, takes the name, id, district and amount sold and assigns their value.
 		public Salesman (string name, int id, char district, int amountSold)
 		{
 			this.name = name;
