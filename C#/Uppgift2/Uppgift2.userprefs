@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Uppgift2/Main.cs">
     <Files>
-      <File FileName="Uppgift2/Main.cs" Line="18" Column="13" />
-      <File FileName="Uppgift2/Salesman.cs" Line="43" Column="3" />
+      <File FileName="Uppgift2/Main.cs" Line="84" Column="17" />
+      <File FileName="Uppgift2/Salesman.cs" Line="73" Column="87" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
