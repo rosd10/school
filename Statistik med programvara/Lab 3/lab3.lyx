@@ -59,7 +59,538 @@
 
 \begin_body
 
+\begin_layout Title
+Laboration 1
+\begin_inset Newline newline
+\end_inset
+
+Del 3
+\end_layout
+
+\begin_layout Author
+Kristian Lundkvist
+\begin_inset Newline newline
+\end_inset
+
+900831
+\end_layout
+
 \begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Uppgift 1
+\end_layout
+
+\begin_layout Subsection
+a
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> x +5  
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 47 28 40 42 30 38 36 31 35 39 36 33 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ökar samtliga värde i x med 5.
+\end_layout
+
+\begin_layout Subsection
+b
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> 2*x  
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 84 46 70 74 50 66 62 52 60 68 62 56 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Multiplicerar samtliga värde i x med 2.
+\end_layout
+
+\begin_layout Subsection
+c
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> x/4.7  
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 8.936170 4.893617 7.446809 7.872340 5.319149 7.021277 6.595745 5.531915  
+\end_layout
+
+\begin_layout Plain Layout
+
+[9] 6.382979 7.234043 6.595745 5.957447 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dividerar samtliga värde i x med 4,7.
+\end_layout
+
+\begin_layout Subsection
+d
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> x+ 12:1  
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 54 34 45 46 33 40 37 31 34 37 33 29 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ökar första värdet i x med 12, andra värdet med 11, tredje med 10 och så
+ vidare.
+\end_layout
+
+\begin_layout Section
+Uppgift 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> sum(x-2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 12039 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Summerar samtliga tal i x efter att de upphöjts med 2.
+\end_layout
+
+\begin_layout Section
+Uppgift 3
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> tiondel <- seq(0, 1, 0.1) 
+\end_layout
+
+\begin_layout Plain Layout
+
+> quantile(x, tiondel)   
+\end_layout
+
+\begin_layout Plain Layout
+
+0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100%  
+\end_layout
+
+\begin_layout Plain Layout
+
+23.0 25.1 26.4 28.6 30.4 31.0 32.2 33.7 34.8 36.8 42.0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+quantile visar kvartiler som motsvarar de givna sannolikheterna.
+ Den minsta observationen motsvarar en sannolikhet av 0 och den största
+ till en sannolikhet av 1.
+\end_layout
+
+\begin_layout Standard
+seq genererar regelbunda sekvenser.
+\end_layout
+
+\begin_layout Section
+Uppgift 4
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> sum(x)/length(x) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 31.25 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ger dig summan av alla x delat med antalet element i x, även kallat genomsnittet.
+\end_layout
+
+\begin_layout Section
+Uppgift 5
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> summary(x)    
+\end_layout
+
+\begin_layout Plain Layout
+
+Min.
+ 1st Qu.
+  Median    Mean 3rd Qu.
+    Max.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+23.00   27.50   31.00   31.25   34.25   42.00  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Visar ett antal intressanta fakta om x, bland annat minsta värdet, första
+ kvartilen, medeltalet och största värdet.
+\end_layout
+
+\begin_layout Section
+Uppgift 6
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+hist(x)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Visar ett histogram för x.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+hist(x, seq(20, 50, 10))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Visar ett histogram för x.
+ Histogramet börjar på 20, slutar på 50 och går i steg om 10.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+hist(x, seq(20, 50, 5)))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Visar ett histogram för x.
+ Histogramet börjar på 20, slutar på 50 och går i steg om 5.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+hist(x, c(20,25,30,40,50))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Visar ett histogram för x.
+ Visar värden mellan 20-25, 25-30, 30-40 och 40-50.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+barplot(x)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Visar ett stapeldiagram för x.
+\end_layout
+
+\begin_layout Section
+Uppgift 7
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> x <- c(16.3, 7.9, 15.2, 18.3, 17.1, 13.5, 8.4, 12.9, 9.4, 14.4) 
+\end_layout
+
+\begin_layout Plain Layout
+
+> x  
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 16.3  7.9 15.2 18.3 17.1 13.5  8.4 12.9  9.4 14.4 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+a
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> mean(x) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 13.34 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+b
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> quantile(x)     
+\end_layout
+
+\begin_layout Plain Layout
+
+0%    25%    50%    75%   100%   
+\end_layout
+
+\begin_layout Plain Layout
+
+7.900 10.275 13.950 16.025 18.300  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+c
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> sd(x) 
+\end_layout
+
+\begin_layout Plain Layout
+
+[1] 3.67913 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Lådagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename boxplot.esp
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Histogram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename histogram.esp
+	scale 50
+
+\end_inset
+
 
 \end_layout
 
