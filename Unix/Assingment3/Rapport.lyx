@@ -1,0 +1,1593 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Nibbles
+\end_layout
+
+\begin_layout Author
+Kristian Lundkvist - 900831
+\begin_inset Newline newline
+\end_inset
+
+Martin Säll - 910413
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Implementation
+\end_layout
+
+\begin_layout Subsection
+Pseudo code
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Game{
+\end_layout
+
+\begin_layout Plain Layout
+
+	Initialize everything{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Print Borders
+\end_layout
+
+\begin_layout Plain Layout
+
+		Print Snake
+\end_layout
+
+\begin_layout Plain Layout
+
+		Create and print apples
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	GameLoop{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Sleep for 0.1 second
+\end_layout
+
+\begin_layout Plain Layout
+
+		Read keyboard
+\end_layout
+
+\begin_layout Plain Layout
+
+		if EXITKEY is pressed: exit
+\end_layout
+
+\begin_layout Plain Layout
+
+		Update direction
+\end_layout
+
+\begin_layout Plain Layout
+
+		Move snake{
+\end_layout
+
+\begin_layout Plain Layout
+
+			Check direction
+\end_layout
+
+\begin_layout Plain Layout
+
+			Move in direction
+\end_layout
+
+\begin_layout Plain Layout
+
+			if apple: don't move tail and create new
+\end_layout
+
+\begin_layout Plain Layout
+
+			if collision: exit
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		Repeat
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Datastructures
+\end_layout
+
+\begin_layout Standard
+The game is based on a two-dimensional array that contains all the data,
+ from borders to apples.
+ This structure is filled with the borders, then the snake and last the
+ apples, these positions are then updated and checked against for collisions.
+\end_layout
+
+\begin_layout Subsection
+Game logic
+\end_layout
+
+\begin_layout Standard
+The game consists of a single loop that repeats until a variable is set
+ to 1 and the game ends, either through collision or player input.
+ See pseudo code for explanation.
+\end_layout
+
+\begin_layout Section
+Comparison between assembly and higher lever implementation
+\end_layout
+
+\begin_layout Standard
+It is 
+\begin_inset Quotes eld
+\end_inset
+
+flatter
+\begin_inset Quotes erd
+\end_inset
+
+ in the sense that instead of going into loops and if-statements it jumps
+ around the code.
+ It might be that we just think in high level code but the structure is
+ more or less the same with the difference being that assembly have less
+ control over the structure (you can jump to any label at any point, including
+ loops and so on which isn't possible in a high level language).
+\end_layout
+
+\begin_layout Section
+Optimisation
+\end_layout
+
+\begin_layout Standard
+We havn't really been working to optimize the code at all.
+\end_layout
+
+\begin_layout Section
+Source code
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# Constants
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#Window size
+\end_layout
+
+\begin_layout Plain Layout
+
+WIDTH=40
+\end_layout
+
+\begin_layout Plain Layout
+
+HEIGHT=40
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#Snake start
+\end_layout
+
+\begin_layout Plain Layout
+
+STARTX=20
+\end_layout
+
+\begin_layout Plain Layout
+
+STARTY=20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#Field Values
+\end_layout
+
+\begin_layout Plain Layout
+
+EMPTY=0
+\end_layout
+
+\begin_layout Plain Layout
+
+APPLE=1
+\end_layout
+
+\begin_layout Plain Layout
+
+DOWN=2
+\end_layout
+
+\begin_layout Plain Layout
+
+UP=3
+\end_layout
+
+\begin_layout Plain Layout
+
+LEFT=4
+\end_layout
+
+\begin_layout Plain Layout
+
+RIGHT=5 
+\end_layout
+
+\begin_layout Plain Layout
+
+WALL=6
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#Graphics
+\end_layout
+
+\begin_layout Plain Layout
+
+WALLCHAR=72 #'H'
+\end_layout
+
+\begin_layout Plain Layout
+
+APPLECHAR=64 #'@'
+\end_layout
+
+\begin_layout Plain Layout
+
+SNAKECHAR=70 #'F'
+\end_layout
+
+\begin_layout Plain Layout
+
+NOCHAR = 32 #' '
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#Collision 
+\end_layout
+
+\begin_layout Plain Layout
+
+COLLISSION=DOWN
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#KEYS 
+\end_layout
+
+\begin_layout Plain Layout
+
+UPKEY=119 #w 
+\end_layout
+
+\begin_layout Plain Layout
+
+DOWNKEY=115 #s 
+\end_layout
+
+\begin_layout Plain Layout
+
+RIGHTKEY=100 #d 
+\end_layout
+
+\begin_layout Plain Layout
+
+LEFTKEY=97 #a 
+\end_layout
+
+\begin_layout Plain Layout
+
+EXITKEY=27 # esc 
+\end_layout
+
+\begin_layout Plain Layout
+
+OFFSETKEY= DOWNKEY - DOWN
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#Variabler 
+\end_layout
+
+\begin_layout Plain Layout
+
+.data 
+\end_layout
+
+\begin_layout Plain Layout
+
+direction: .long RIGHT #Start dir 
+\end_layout
+
+\begin_layout Plain Layout
+
+quit: .long 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+.bss 
+\end_layout
+
+\begin_layout Plain Layout
+
+field: .space WIDTH*HEIGHT*4 # size of the fields in bytes 
+\end_layout
+
+\begin_layout Plain Layout
+
+head: .long 0 
+\end_layout
+
+\begin_layout Plain Layout
+
+tail: .long 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+.text
+\end_layout
+
+\begin_layout Plain Layout
+
+updateSnake:
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	8(%esp), %edx	#edx håller dir
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	4(%esp), %ecx	#address till index 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	(%ecx), %eax	# eax index
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+moveUp: #om direction är up flytta snake up, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		#går vidare till moveDown annars 
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl	$UP, %edx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	jnp	moveDown 
+\end_layout
+
+\begin_layout Plain Layout
+
+	decl	%eax 
+\end_layout
+
+\begin_layout Plain Layout
+
+	jmp	print
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+moveDown: #om direction är ner flytta snake ner, 
+\end_layout
+
+\begin_layout Plain Layout
+
+		#går vidare till moveLeft annars
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl	$UP, %edx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	jne	moveLeft 
+\end_layout
+
+\begin_layout Plain Layout
+
+	incl	%eax 
+\end_layout
+
+\begin_layout Plain Layout
+
+	jmp	print
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+moveLeft: #om direction är vänster flytta snake vänster,
+\end_layout
+
+\begin_layout Plain Layout
+
+		#går vidare till moveRight annars
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl	$UP, %edx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	jne	moveRight 
+\end_layout
+
+\begin_layout Plain Layout
+
+	subl	$HEIGHT, %eax 
+\end_layout
+
+\begin_layout Plain Layout
+
+	jmp	print
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+moveRight: #flytta snake höger 
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl	$HEIGHT,%eax
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+print: #kalla på nib_put_scr för att rita ut snake 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	%eax,(%ecx) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl	12(%esp) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	xorl	%edx, %edx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	$HEIGHT,%ecx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	idiv	%ecx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl	%edx
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl	%eax 
+\end_layout
+
+\begin_layout Plain Layout
+
+	call	nib_put_scr 
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl	$12, %esp 
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+setFieldValue: #sätter ett nytt värde på en field possition 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	4(%esp), %eax 
+\end_layout
+
+\begin_layout Plain Layout
+
+	imull	$HEIGHT, %eax 
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl	8(%esp), %eax 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	$field, %ecx 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	16(%esp), %edx 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl	%edx, (%ecx, %eax, 4) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+getFieldValue: #hämtar en field possition 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    4(%esp), %eax   
+\end_layout
+
+\begin_layout Plain Layout
+
+    imull   $HEIGHT, %eax  
+\end_layout
+
+\begin_layout Plain Layout
+
+    addl    8(%esp), %eax     
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $field, %ecx  
+\end_layout
+
+\begin_layout Plain Layout
+
+    movl    (%ecx, %eax, 4), %edx     
+\end_layout
+
+\begin_layout Plain Layout
+
+    ret
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+moveSnake: #denna funktionen updaterar snakes position
+\end_layout
+
+\begin_layout Plain Layout
+
+		#samt kollar kollision med äpplen
+\end_layout
+
+\begin_layout Plain Layout
+
+    # Move head    
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    (direction), %edx   
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $field, %esi  
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    (head), %eax    
+\end_layout
+
+\begin_layout Plain Layout
+
+    movl    %edx, (%esi, %eax, 4)
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl   $SNAKECHAR     
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl   %edx    
+\end_layout
+
+\begin_layout Plain Layout
+
+    pushl   $head
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    updateSnake
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl    $12, %esp
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    (head), %eax   
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    (%esi, %eax, 4), %ebx   
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl    $APPLE, %ebx    
+\end_layout
+
+\begin_layout Plain Layout
+
+    jne     noApple 
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    createApple     
+\end_layout
+
+\begin_layout Plain Layout
+
+	jmp     checkCollision
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+noApple: # flyttar svansen på snake om man inte har ätit ett äpple  
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    (tail), %eax   
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    (%esi, %eax, 4), %edx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $EMPTY, (%esi, %eax, 4)   
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl   $NOCHAR  
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl   %edx       
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl   $tail
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    updateSnake
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl    $12, %esp
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+checkCollision: #kollar om det är en kollision och stänger programmet
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl    $COLLISSION, %ebx     
+\end_layout
+
+\begin_layout Plain Layout
+
+	jl      checkDone     
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $1, (quit)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+checkDone:        
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+createApple: #skapar äpple  
+\end_layout
+
+\begin_layout Plain Layout
+
+	subl    $12, %esp 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+appleLoop:
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    rand
+\end_layout
+
+\begin_layout Plain Layout
+
+	xorl    %edx, %edx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $WIDTH, %ecx   
+\end_layout
+
+\begin_layout Plain Layout
+
+	idiv    %ecx            
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %edx, (%esp)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	# Random y-coordinate     
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    rand      
+\end_layout
+
+\begin_layout Plain Layout
+
+	xorl    %edx, %edx    
+\end_layout
+
+\begin_layout Plain Layout
+
+    movl    $HEIGHT, %ecx   
+\end_layout
+
+\begin_layout Plain Layout
+
+	idiv    %ecx     
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %edx, 4(%esp)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    getFieldValue
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl    $EMPTY, %edx #om det finns fler äpple 
+\end_layout
+
+\begin_layout Plain Layout
+
+						#än $EMPTY så kör den vidare 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	jne     appleLoop
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $APPLE, (%ecx, %eax, 4)   
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $APPLECHAR, 8(%esp)   
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    nib_put_scr         
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl    $12, %esp     
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret 	
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+.globl start_game 
+\end_layout
+
+\begin_layout Plain Layout
+
+start_game: #startar spelet 
+\end_layout
+
+\begin_layout Plain Layout
+
+	enter $0,$0 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	#setup stack and so on 
+\end_layout
+
+\begin_layout Plain Layout
+
+	call nib_init #nib_init() 
+\end_layout
+
+\begin_layout Plain Layout
+
+	subl    $16, %esp
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+printWall: 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl $WALLCHAR,8(%esp) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl $WALL,16(%esp) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl $HEIGHT-2,%ebx 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+printWallVertical: #lägger till strukturen för de vertikala väggarna 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $0, (%esp)  
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %ebx, 4(%esp) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    setGamefieldValue  
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    nib_put_scr    
+\end_layout
+
+\begin_layout Plain Layout
+
+    movl    $WIDTH-1, (%esp)    
+\end_layout
+
+\begin_layout Plain Layout
+
+    call    setFieldValue      
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    nib_put_scr      
+\end_layout
+
+\begin_layout Plain Layout
+
+	decl    %ebx    
+\end_layout
+
+\begin_layout Plain Layout
+
+    jg      printWallVertical      
+\end_layout
+
+\begin_layout Plain Layout
+
+    movl    $WIDTH-1, %ebx
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+printWallHorizontal: #lägger till strukturen för de horisontella väggarna
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %ebx, (%esp) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $0, 4(%esp)  
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    setGamefieldValue  
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    nib_put_scr   
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %ebx, (%esp)    
+\end_layout
+
+\begin_layout Plain Layout
+
+    movl    $HEIGHT-1, 4(%esp)   
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    setFieldValue     
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    nib_put_scr 
+\end_layout
+
+\begin_layout Plain Layout
+
+	decl    %ebx    
+\end_layout
+
+\begin_layout Plain Layout
+
+	jge     printWallHorizontal 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+initSnake: #initialiserar masken   
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $STARTY, 4(%esp)   
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $SNAKECHAR, 8(%esp)  
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $RIGHT, 12(%esp) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $STARTX, %eax  
+\end_layout
+
+\begin_layout Plain Layout
+
+	imull   $HEIGHT, %eax     
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl    $STARTY, %eax       
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %eax, (head)          
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $STARTX + 1, %ebx 
+\end_layout
+
+\begin_layout Plain Layout
+
+	subl    8(%ebp), %ebx       
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %ebx, %eax   
+\end_layout
+
+\begin_layout Plain Layout
+
+	decl    %eax   
+\end_layout
+
+\begin_layout Plain Layout
+
+	imull   $HEIGHT, %eax   
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl    $STARTY, %eax   
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %eax, (tail)     
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $field, %ecx      
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $RIGHT, (%ecx, %eax, 4)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+initSnakeLoop: #skriver ut ormen på skärmen
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %ebx, (%esp)
+\end_layout
+
+\begin_layout Plain Layout
+
+    call    setFieldValue
+\end_layout
+
+\begin_layout Plain Layout
+
+    call    nib_put_scr
+\end_layout
+
+\begin_layout Plain Layout
+
+	incl    %ebx
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl    $STARTX, %ebx
+\end_layout
+
+\begin_layout Plain Layout
+
+	jle     initSnakeLoop
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl    $16, %esp
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    12(%ebp), %ebx
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+initApples: #startar skapandet av äpple 
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    createApple   
+\end_layout
+
+\begin_layout Plain Layout
+
+	decl    %ebx    
+\end_layout
+
+\begin_layout Plain Layout
+
+	jg      initApples
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+gameLoop: #main spel loop
+\end_layout
+
+\begin_layout Plain Layout
+
+	pushl   $100000
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    usleep
+\end_layout
+
+\begin_layout Plain Layout
+
+	addl    $4, %esp
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    nib_poll_kbd
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+keyQuit: #kollar om EXITKEY är nertryckt och om den är det stänger av spelet
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl    $EXITKEY, %eax
+\end_layout
+
+\begin_layout Plain Layout
+
+	jne     keyMove
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    $1, (quit)
+\end_layout
+
+\begin_layout Plain Layout
+
+	jmp     keyCheckDone
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+keyMove: #kollar om någon av rörelseknapparna är nertryckt
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl    $DOWNKEY, %eax
+\end_layout
+
+\begin_layout Plain Layout
+
+	jl      keyCheckDone
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl    $RIGHTKEY, %eax
+\end_layout
+
+\begin_layout Plain Layout
+
+	jg      keyCheckDone
+\end_layout
+
+\begin_layout Plain Layout
+
+	subl    $OFFSETKEY, %eax
+\end_layout
+
+\begin_layout Plain Layout
+
+	movl    %eax, (direction)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+keyCheckDone: #aggerar på knapptryckningar och om spelet skall avslutas
+\end_layout
+
+\begin_layout Plain Layout
+
+	call    moveSnake
+\end_layout
+
+\begin_layout Plain Layout
+
+	cmpl    $0, (quit)
+\end_layout
+
+\begin_layout Plain Layout
+
+	je      gameLoop
+\end_layout
+
+\begin_layout Plain Layout
+
+	call	nib_end #nib_end()
+\end_layout
+
+\begin_layout Plain Layout
+
+	leave
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
