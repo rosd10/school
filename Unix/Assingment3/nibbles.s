@@ -37,7 +37,7 @@ OFFSETKEY= DOWNKEY - DOWN
 #Variabler
 .data
 direction: .long RIGHT #Start dir
-quit: long 0
+quit: .long 0
 
 .bss
 field: .space WIDTH*HEIGHT*4 # size of the fields in bytes
@@ -190,7 +190,7 @@ printWall:
 printWallVertical: #lägger till strukturen för de vertikala väggarna
 	movl    $0, (%esp)
         movl    %ebx, 4(%esp)
-        call    setGamefieldValue
+        call    setFieldValue
         call    nib_put_scr
         movl    $WIDTH-1, (%esp)
         call    setFieldValue
@@ -203,7 +203,7 @@ printWallVertical: #lägger till strukturen för de vertikala väggarna
 printWallHorizontal: #lägger till strukturen för de horisontella väggarna
         movl    %ebx, (%esp)
         movl    $0, 4(%esp)
-        call    setGamefieldValue
+        call    setFieldValue
         call    nib_put_scr
         movl    %ebx, (%esp)
         movl    $HEIGHT-1, 4(%esp)
