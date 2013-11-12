@@ -1,0 +1,86 @@
+html {
+    background: #04859D;
+    overflow-y: scroll;
+}
+
+
+/* HTML5 elements */ 
+header,footer,nav,article,section,aside,figure,figcation{display:block;}
+
+/* navigation menu */
+nav.navmenu {
+    display: block;
+    padding: 0.2em 1em 0 1em;
+    border: 2px solid #5FBDCE;
+    border-radius: 6px;
+    background: #FFB773;
+}
+
+/* Navmeny style */
+nav.navmenu a {
+    padding: 0.3em 1em 0 1em;
+    color: #555555;
+    font-family: Tahoma, Geneva, sans-serif;
+    text-decoration:none;
+}
+
+/* Style for links in navmenu */
+nav.navmenu a:link    { }
+nav.navmenu a:visited { }
+nav.navmenu a:hover   { color: #111111; background: #5FBDCE; }
+nav.navmenu a:active  { }
+
+body {
+    margin: 8px auto;
+    width: 934px;
+    padding: 8px;
+    background: #37B6CD;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-family: Georgia, serif;
+    color: #333333;
+}
+
+h1 {
+    text-transform: uppercase;
+    border-bottom: 4px double #5FBDCE;
+}
+
+img {
+    border: none;
+}
+
+/* Style for byline */
+#byline {
+    font: 0.75em Arial, Helvetica, sans-serif;
+    color: #285C66;
+}
+
+/* Border for image in byline */
+#byline img{
+    border-radius: 4px;
+}
+
+/*Style for links in footer */
+footer a {
+    font: italic 0.75em Arial, Helvetica, sans-serif;
+    text-decoration:none;
+    color: #015666;
+}
+footer a:link    { }
+footer a:visited { }
+footer a:hover   { text-decoration:underline;  color: #333333; }
+footer a:active  { }
+
+/* Set two columns */
+.col2{
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column: 2;
+}
+
+/* Highlight current page in navbar */
+body#me a#me-, body#report a#report- body#source a#source- {
+    background:#EEA259;
+    border:2px solid #DD7F25;
+}
